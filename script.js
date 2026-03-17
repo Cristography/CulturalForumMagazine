@@ -130,30 +130,51 @@ document.addEventListener('DOMContentLoaded', function() {
         exportBtn.disabled = true;
 
         try {
-            const posterRect = poster.getBoundingClientRect();
-            const originalTransform = poster.style.transform;
-            const originalWidth = poster.style.width;
-            const originalHeight = poster.style.height;
+            const originalStyles = {
+                transform: poster.style.transform,
+                width: poster.style.width,
+                height: poster.style.height,
+                overflow: poster.style.overflow
+            };
+            
+            const outerFrame = poster.querySelector('.outer-frame');
+            const originalFrameStyles = {
+                transform: outerFrame.style.transform,
+                width: outerFrame.style.width,
+                height: outerFrame.style.height
+            };
             
             poster.style.transform = 'none';
             poster.style.width = '600px';
             poster.style.height = '800px';
+            poster.style.overflow = 'hidden';
             
-            await new Promise(resolve => setTimeout(resolve, 100));
+            outerFrame.style.transform = 'none';
+            outerFrame.style.width = 'auto';
+            outerFrame.style.height = 'auto';
+            
+            await new Promise(resolve => setTimeout(resolve, 150));
             
             const canvas = await html2canvas(poster, {
                 width: 600,
                 height: 800,
-                scale: 2,
+                scale: 3,
                 useCORS: true,
                 allowTaint: true,
-                backgroundColor: '#f5f0e6',
-                logging: false
+                backgroundColor: '#BFA98A',
+                logging: false,
+                windowWidth: 600,
+                windowHeight: 800
             });
             
-            poster.style.transform = originalTransform;
-            poster.style.width = originalWidth;
-            poster.style.height = originalHeight;
+            poster.style.transform = originalStyles.transform;
+            poster.style.width = originalStyles.width;
+            poster.style.height = originalStyles.height;
+            poster.style.overflow = originalStyles.overflow;
+            
+            outerFrame.style.transform = originalFrameStyles.transform;
+            outerFrame.style.width = originalFrameStyles.width;
+            outerFrame.style.height = originalFrameStyles.height;
 
             const link = document.createElement('a');
             link.download = 'poster-' + Date.now() + '.png';

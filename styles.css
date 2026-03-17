@@ -235,7 +235,6 @@ body {
     justify-content: center;
     align-items: flex-start;
     min-width: 600px;
-    overflow: hidden;
 }
 
 .poster-preview {
@@ -247,25 +246,6 @@ body {
     box-shadow:
         0 10px 40px rgba(0, 0, 0, 0.3);
     flex-shrink: 0;
-}
-
-@media (max-width: 900px) {
-    .preview-section {
-        transform-origin: top center;
-    }
-
-    .poster-preview {
-        transform: scale(0.6);
-        transform-origin: top center;
-        margin-bottom: -320px;
-    }
-}
-
-@media (max-width: 600px) {
-    .poster-preview {
-        transform: scale(0.45);
-        margin-bottom: -440px;
-    }
 }
 
 
@@ -475,97 +455,32 @@ body {
     .main-content {
         grid-template-columns: 340px 1fr;
     }
-
-    .poster-preview {
-        width: 500px;
-        height: 667px;
-    }
-
-    .outer-frame {
-        top: 20px;
-        left: 20px;
-        right: 20px;
-        bottom: 20px;
-    }
-
-    .magazine-title {
-        font-size: 26px;
-    }
-
-    .logos-row {
-        gap: 40px;
-    }
-
-    .poster-cover {
-        height: 150px;
-    }
-
-    .article-title {
-        font-size: 20px;
-    }
-
-    .poster-text {
-        font-size: 16px;
-    }
 }
 
 @media (max-width: 900px) {
     .main-content {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
     }
 
     .controls-panel {
         position: static;
+        width: 100%;
+    }
+
+    .preview-section {
+        width: 100%;
+        overflow-x: auto;
+        padding: 20px 0;
+        display: block;
+        text-align: center;
     }
 
     .poster-preview {
         width: 600px;
         height: 800px;
-    }
-
-    .outer-frame {
-        top: 15px;
-        left: 15px;
-        right: 15px;
-        bottom: 15px;
-    }
-
-    .poster-content {
-        padding: 0 10px;
-    }
-
-    .magazine-title {
-        font-size: 22px;
-    }
-
-    .logos-row {
-        gap: 25px;
-    }
-
-    .logo-text-top,
-    .logo-text-bottom {
-        font-size: 9px;
-    }
-
-    .geometric-emblem {
-        width: 45px;
-        height: 45px;
-    }
-
-    .poster-cover {
-        height: 120px;
-    }
-
-    .article-title {
-        font-size: 18px;
-    }
-
-    .poster-text {
-        font-size: 14px;
-    }
-
-    .poster-author {
-        font-size: 14px;
+        margin: 0 auto;
+        display: inline-block;
     }
 }
 
@@ -578,21 +493,8 @@ body {
         padding: 15px;
     }
 
-    .magazine-title {
-        font-size: 18px;
-    }
+    .option-row {
+        gap: 2px;
 
-    .logos-row {
-        gap: 15px;
-    }
-
-    .logo-text-top,
-    .logo-text-bottom {
-        font-size: 8px;
-    }
-
-    .geometric-emblem {
-        width: 35px;
-        height: 35px;
     }
 }
