@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منشئ الملصقات الأدبية</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @font-face {
+            font-family: '29LT Azer';
+            src: url('assets/29LT%20Azer-Regular.OTF') format('opentype');
+            font-weight: normal;
+        }
+
+        @font-face {
+            font-family: '29LT Azer';
+            src: url('assets/29LT%20Azer-Bold.OTF') format('opentype');
+            font-weight: bold;
+        }
+
+        @font-face {
+            font-family: '29LT Azer';
+            src: url('assets/29LT%20Azer-Medium.OTF') format('opentype');
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="header">
+
+        </header>
+
+        <main class="main-content">
+            <aside class="controls-panel">
+                <h2 class="panel-title">إعدادات الملصق</h2>
+
+                <div class="control-group">
+                    <label class="control-label">صورة الغلاف</label>
+                    <input type="file" id="coverImage" accept="image/*" class="file-input">
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">موضع الصورة</label>
+                    <div class="option-row">
+                        <label class="option-label">حجم الصورة:</label>
+                        <select id="coverSize" class="select-input">
+                            <option value="cover">ملء الإطار</option>
+                            <option value="contain">تكبير حسب الحاجة</option>
+                            <option value="100% 100%">تمديد</option>
+                        </select>
+                    </div>
+                    <div class="option-row">
+                        <label class="option-label">عمودي:</label>
+                        <input type="range" id="coverPositionY" min="0" max="100" value="50" class="range-input">
+                        <span id="coverPositionYValue" class="range-value">50%</span>
+                    </div>
+                    <div class="option-row">
+                        <label class="option-label">أفقي:</label>
+                        <input type="range" id="coverPositionX" min="0" max="100" value="50" class="range-input">
+                        <span id="coverPositionXValue" class="range-value">50%</span>
+                    </div>
+                </div>
+
+<!--                 <div class="control-group">
+                    <label class="control-label">عنوان المجلة</label>
+                    <input type="text" id="magazineTitle" class="text-input" value="مجلة المنتدى الثقافي"
+                        placeholder="عنوان المجلة...">
+                </div>
+ -->
+                <div class="control-group">
+                    <label class="control-label">عنوان المقال</label>
+                    <input type="text" id="titleInput" class="text-input" placeholder="أدخل عنوان المقال...">
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">النص الرئيسي</label>
+                    <textarea id="contentInput" class="text-area" placeholder="أدخل النص..."></textarea>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">خيارات النص</label>
+                    <div class="option-row">
+                        <label class="option-label">المحاذاة:</label>
+                        <select id="contentAlign" class="select-input">
+                            <option value="center">وسط</option>
+                            <option value="right">يمين</option>
+                        </select>
+                    </div>
+                    <div class="option-row">
+                        <label class="option-label">حجم الخط:</label>
+                        <input type="range" id="fontSize" min="14" max="28" value="19" class="range-input">
+                        <span id="fontSizeValue" class="range-value">19px</span>
+                    </div>
+                    <div class="option-row">
+                        <label class="option-label">تباعد الأسطر:</label>
+                        <input type="range" id="lineHeight" min="1.2" max="2.5" step="0.1" value="1.6"
+                            class="range-input">
+                        <span id="lineHeightValue" class="range-value">1.6</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">اسم المؤلف</label>
+                    <input type="text" id="authorInput" class="text-input" placeholder="اسم المؤلف...">
+                </div>
+
+                <button id="exportBtn" class="export-btn">تصدير الملصق</button>
+            </aside>
+
+            <section class="preview-section">
+                <div id="posterPreview" class="poster-preview">
+                    <div class="poster-background"></div>
+                    <div class="outer-frame">
+                        <div class="header-section">
+                            <img src="assets/logo%202.1.png" alt="الشعار" class="logo">
+                            <h1 class="magazine-title" id="previewMagazineTitle">مجلة المنتدى الثقافي</h1>
+                            <div class="poster-lines"></div>
+                            <div class="poster-cover" id="posterCover">
+                                <div class="cover-overlay"></div>
+                            </div>
+                            <div class="poster-lines"></div>
+                        </div>
+
+                        <div class="poster-content">
+
+
+                            <h2 class="article-title" id="previewTitle">
+                                <span class="title-bracket">/</span>
+                                <span id="titleText"></span>
+                                <span class="title-bracket">/</span>
+                            </h2>
+
+                            <div class="text-area-backdrop">
+                                <p class="poster-text" id="previewContent"></p>
+                            </div>
+
+                            <p class="poster-author" id="previewAuthor"></p>
+                           
+                        </div>
+                         <div class="poster-lines"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
