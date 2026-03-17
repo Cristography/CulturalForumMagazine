@@ -1,4 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    window.stepValue = function(inputId, step) {
+        const input = document.getElementById(inputId);
+        let newValue = parseFloat(input.value) + step;
+        
+        newValue = Math.max(parseFloat(input.min), Math.min(parseFloat(input.max), newValue));
+        
+        input.value = newValue;
+        
+        if (inputId === 'fontSize') {
+            document.getElementById('fontSizeValue').textContent = newValue + 'px';
+        } else if (inputId === 'lineHeight') {
+            document.getElementById('lineHeightValue').textContent = newValue;
+        } else if (inputId === 'coverPositionY') {
+            document.getElementById('coverPositionYValue').textContent = newValue + '%';
+        } else if (inputId === 'coverPositionX') {
+            document.getElementById('coverPositionXValue').textContent = newValue + '%';
+        }
+        
+        input.dispatchEvent(new Event('input'));
+    };
+
     const titleInput = document.getElementById('titleInput');
     const contentInput = document.getElementById('contentInput');
     const authorInput = document.getElementById('authorInput');
@@ -108,13 +130,30 @@ document.addEventListener('DOMContentLoaded', function() {
         exportBtn.disabled = true;
 
         try {
+            const posterRect = poster.getBoundingClientRect();
+            const originalTransform = poster.style.transform;
+            const originalWidth = poster.style.width;
+            const originalHeight = poster.style.height;
+            
+            poster.style.transform = 'none';
+            poster.style.width = '600px';
+            poster.style.height = '800px';
+            
+            await new Promise(resolve => setTimeout(resolve, 100));
+            
             const canvas = await html2canvas(poster, {
+                width: 600,
+                height: 800,
                 scale: 2,
                 useCORS: true,
                 allowTaint: true,
                 backgroundColor: '#f5f0e6',
                 logging: false
             });
+            
+            poster.style.transform = originalTransform;
+            poster.style.width = originalWidth;
+            poster.style.height = originalHeight;
 
             const link = document.createElement('a');
             link.download = 'poster-' + Date.now() + '.png';

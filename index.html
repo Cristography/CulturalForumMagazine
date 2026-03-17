@@ -54,12 +54,16 @@
                     </div>
                     <div class="option-row">
                         <label class="option-label">عمودي:</label>
+                        <button class="stepper-btn" onclick="stepValue('coverPositionY', -1)">−</button>
                         <input type="range" id="coverPositionY" min="0" max="100" value="50" class="range-input">
+                        <button class="stepper-btn" onclick="stepValue('coverPositionY', 1)">+</button>
                         <span id="coverPositionYValue" class="range-value">50%</span>
                     </div>
                     <div class="option-row">
                         <label class="option-label">أفقي:</label>
+                        <button class="stepper-btn" onclick="stepValue('coverPositionX', -1)">−</button>
                         <input type="range" id="coverPositionX" min="0" max="100" value="50" class="range-input">
+                        <button class="stepper-btn" onclick="stepValue('coverPositionX', 1)">+</button>
                         <span id="coverPositionXValue" class="range-value">50%</span>
                     </div>
                 </div>
@@ -91,13 +95,17 @@
                     </div>
                     <div class="option-row">
                         <label class="option-label">حجم الخط:</label>
+                        <button class="stepper-btn" onclick="stepValue('fontSize', -1)">−</button>
                         <input type="range" id="fontSize" min="14" max="28" value="19" class="range-input">
+                        <button class="stepper-btn" onclick="stepValue('fontSize', 1)">+</button>
                         <span id="fontSizeValue" class="range-value">19px</span>
                     </div>
                     <div class="option-row">
                         <label class="option-label">تباعد الأسطر:</label>
+                        <button class="stepper-btn" onclick="stepValue('lineHeight', -0.1)">−</button>
                         <input type="range" id="lineHeight" min="1.2" max="2.5" step="0.1" value="1.6"
                             class="range-input">
+                        <button class="stepper-btn" onclick="stepValue('lineHeight', 0.1)">+</button>
                         <span id="lineHeightValue" class="range-value">1.6</span>
                     </div>
                 </div>
@@ -138,9 +146,9 @@
                             </div>
 
                             <p class="poster-author" id="previewAuthor"></p>
-
                         </div>
                         <div class="poster-lines"></div>
+
                     </div>
                 </div>
 
