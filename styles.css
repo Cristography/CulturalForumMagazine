@@ -410,6 +410,14 @@ body {
     padding-left: 0;
 }
 
+.simple-footer {
+    align-items: center;
+    text-align: center;
+    margin-top: 30px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
 @media (max-width: 1024px) {
     .main-content {
         grid-template-columns: 340px 1fr;
